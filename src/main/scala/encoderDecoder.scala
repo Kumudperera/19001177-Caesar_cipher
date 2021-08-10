@@ -1,6 +1,6 @@
 object encoderDecoder {
   def main(args: Array[String]): Unit = {
-    val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    val alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ "
 
     val E=(c:Char,key:Int,a:String)=> a((a.indexOf(c.toUpper)+key)%a.size)
 
@@ -8,14 +8,12 @@ object encoderDecoder {
 
     val cipher=(algo:(Char,Int,String)=> Char,s:String,key:Int,a:String)=> s.map(algo(_,key,a))
 
-    val text = "We are planning to attack tomorrow at five evening"
-    val s = text.replace(" ", "")
+    val s = "We are planning to attack tomorrow at five evening"
     val ct=cipher(E, s ,5 ,alphabet)
     val pt=cipher(D,ct,5,alphabet)
 
-    println("TEXT: " + text)
+    println("TEXT: " + s)
     println("ENCRYPTED: " + ct)
     println("DECRYPTED:" + pt)
   }
 }
-
